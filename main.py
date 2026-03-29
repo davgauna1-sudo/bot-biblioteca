@@ -17,7 +17,7 @@ def normalizar(texto):
     return texto
 
 def get_sheet_data():
-    creds_json = os.environ.get("GOOGLE_CREDS")
+   creds_json = os.environ.get("GOOGLE_CREDS").replace('\\n', '\n')
     import json
     creds_dict = json.loads(creds_json)
     creds = Credentials.from_service_account_info(creds_dict, scopes=[
