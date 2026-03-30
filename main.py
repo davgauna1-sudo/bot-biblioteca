@@ -1,6 +1,7 @@
 import os
 import unicodedata
 import requests
+import json
 from flask import Flask, request, jsonify
 import gspread
 from google.oauth2.service_account import Credentials
@@ -18,7 +19,7 @@ def normalizar(texto):
 
 def get_sheet_data():
    creds_json = os.environ.get("GOOGLE_CREDS")
-    import json
+
    creds_dict = json.loads(creds_json)
     creds_dict["private_key"] = creds_dict["private_key"].replace('\\n', '\n')
     creds = Credentials.from_service_account_info(creds_dict, scopes=[
