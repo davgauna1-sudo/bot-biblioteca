@@ -1,7 +1,7 @@
 import os
+import json
 import unicodedata
 import requests
-import json
 from flask import Flask, request, jsonify
 import gspread
 from google.oauth2.service_account import Credentials
@@ -18,9 +18,8 @@ def normalizar(texto):
     return texto
 
 def get_sheet_data():
-   creds_json = os.environ.get("GOOGLE_CREDS")
-
-   creds_dict = json.loads(creds_json)
+    creds_json = os.environ.get("GOOGLE_CREDS")
+    creds_dict = json.loads(creds_json)
     creds_dict["private_key"] = creds_dict["private_key"].replace('\\n', '\n')
     creds = Credentials.from_service_account_info(creds_dict, scopes=[
         "https://www.googleapis.com/auth/spreadsheets.readonly"
@@ -31,19 +30,16 @@ def get_sheet_data():
 
 def buscar_respuesta(user_text, data):
     user_text = normalizar(user_text)
-    mejor_respuesta = "Lo siento, no tengo información sobre eso. Podés preguntar sobre: horarios, sala, reservas, programas o usuario de plataformas."
+    mejor_respuesta = "Lo siento, no tengo información sobre eso. Podés preguntar sobre: horarios, sala, reservas, programas o usuario de plataforma."
     mejor_puntaje = 0
-
     for i in range(1, len(data)):
-        if len(data[i]) < 3:
-            continue
-        keywords = normalizar(data[i][2])
-        lista = [k.strip() for k in keywords.split(",") if k.strip()]
-        puntaje = sum(1 for k in lista if k and k in user_text)
-        if puntaje > mejor_puntaje:
-            mejor_puntaje = puntaje
-            mejor_respuesta = data[i][1]
-
+        if len(data[i]) >= 2:
+            pregunta = normalizar(data[i][0])
+            palabras = pregunta.split()
+            puntaje = sum(1 for p in palabras if p in user_text)
+            if puntaje > mejor_puntaje:
+                mejor_puntaje = puntaje
+                mejor_respuesta = data[i][1]
     return mejor_respuesta
 
 def send_message(chat_id, text):
@@ -55,14 +51,11 @@ def webhook():
     update = request.json
     if not update.get("message") or not update["message"].get("text"):
         return jsonify({"ok": True})
-    
     chat_id = update["message"]["chat"]["id"]
     user_text = update["message"]["text"]
-    
     data = get_sheet_data()
     respuesta = buscar_respuesta(user_text, data)
     send_message(chat_id, respuesta)
-    
     return jsonify({"ok": True})
 
 @app.route("/")
