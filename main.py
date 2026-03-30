@@ -60,4 +60,19 @@ def send_message(chat_id, text):
 @app.route("/webhook", methods=["POST"])
 def webhook():
     update = request.json
-    if not update.g
+    if not update.get("message") or not update["message"].get("text"):
+        return jsonify({"ok": True})
+    chat_id = update["message"]["chat"]["id"]
+    user_text = update["message"]["text"]
+    data = get_sheet_data()
+    respuesta = buscar_respuesta(user_text, data)
+    send_message(chat_id, respuesta)
+    return jsonify({"ok": True})
+
+@app.route("/")
+def index():
+    return "Bot activo"
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
