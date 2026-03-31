@@ -10,22 +10,17 @@ TOKEN = os.environ.get("TOKEN")
 STATS_FILE = "/tmp/estadisticas.csv"
 
 RESPUESTAS = {
-    "horario": "Lun.  a Vin. de 7 a 23 hs Sala  General Sábados de 9 a 16
-             Sala de leitura em sector Referncia especializada de Lun. a Vin. de 7am a 22hs
-             Sala de lectura en sector Circulación y préstamos de Lun. a Vin.  de  7:30  a 21 hs.",
-    "sala": "Lun.  a Vin. de 7 a 23 hs Sala  General Sábados de 9 a 16
-             Sala de leitura em sector Referncia especializada de Lun. a Vin. de 7am a 22hs
-             Sala de lectura en sector Circulación y préstamos de Lun. a Vin.  de  7:30  a 21 hs.",
+    "horario": "Lun. a Vie. de 7 a 23 hs Sala General. Sábados de 9 a 16 hs. Sala de lectura en sector Referencia especializada de Lun. a Vie. de 7 a 22 hs. Sala de lectura en sector Circulación y préstamos de Lun. a Vie. de 7:30 a 21 hs.",
+    "sala": "Lun. a Vie. de 7 a 23 hs Sala General. Sábados de 9 a 16 hs. Sala de lectura en sector Referencia especializada de Lun. a Vie. de 7 a 22 hs. Sala de lectura en sector Circulación y préstamos de Lun. a Vie. de 7:30 a 21 hs.",
     "reserva": "Las reservas de libros para alumnos de grado se reservan por WhatsApp y en Referencia.",
-    "programa": "Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar el certificado de materias aprobadas , especificar para que tramite lo precisas y la  información se te enviara por  por email en un solo archivo en PDF, apra que inicies el tramite por medio del TAD(tramite a distacia).",
-    "usuario": "Para creación de Usuario Proview Thomson Reuters, se precisa nombre y apellido completos y tu e-mail de @campus.
-                Para E-Libro entrando desde mi econ te dirigís a E-libros y generas tu propia cuenta, siguiendo los pasos como si te registraras en cualquier página..",
-    "plataforma": "Para creación de Usuario Proview Thomson Reuters, se precisa nombre y apellido completos y tu e-mail de @campus.
-                   Para E-Libro entrando desde mi econ te dirigís a E-libros y generas tu propia cuenta, siguiendo los pasos como si te registraras en cualquier página..",
-    "digital": "Para creación de Usuario Proview Thomson Reuters, se precisa nombre y apellido completos y tu e-mail de @campus.
-                Para E-Libro entrando desde mi econ te dirigís a E-libros y generas tu propia cuenta, siguiendo los pasos como si te registraras en cualquier página..",
-    "libre": "Necesitás mandar a la Biblioteca referencias de materias aprobadas, tipo de trámite e información por email.",
-    "tramite":"Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar el certificado de materias aprobadas , especificar para que tramite lo precisas y la  información se te enviara por  por email en un solo archivo en PDF, apra que inicies el tramite por medio del TAD(tramite a distacia).",
+    "programa": "Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar con el certificado de materias aprobadas, especificar para qué trámite lo precisás y la información se te enviará por email en un solo archivo PDF para que inicies el trámite por TAD (Trámite a Distancia).",
+    "tramite": "Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar con el certificado de materias aprobadas, especificar para qué trámite lo precisás y la información se te enviará por email en un solo archivo PDF para que inicies el trámite por TAD (Trámite a Distancia).",
+    "usuario": "Para Usuario Proview Thomson Reuters: necesitás nombre, apellido completos y tu email @campus. Para E-Libro: entrando desde Mi Econ te dirigís a E-libros y generás tu propia cuenta siguiendo los pasos de registro.",
+    "plataforma": "Para Usuario Proview Thomson Reuters: necesitás nombre, apellido completos y tu email @campus. Para E-Libro: entrando desde Mi Econ te dirigís a E-libros y generás tu propia cuenta siguiendo los pasos de registro.",
+    "digital": "Para Usuario Proview Thomson Reuters: necesitás nombre, apellido completos y tu email @campus. Para E-Libro: entrando desde Mi Econ te dirigís a E-libros y generás tu propia cuenta siguiendo los pasos de registro.",
+    "libre": "Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar con el certificado de materias aprobadas, especificar para qué trámite lo precisás y la información se te enviará por email en un solo archivo PDF para que inicies el trámite por TAD.",
+    "tad": "Necesitás mandar un mail a biblioteca.referencia@economicas.uba.ar con el certificado de materias aprobadas, especificar para qué trámite lo precisás y la información se te enviará por email en un solo archivo PDF para que inicies el trámite por TAD.",
+}
 
 def normalizar(texto):
     texto = texto.lower().strip()
